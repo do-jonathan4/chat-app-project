@@ -3,11 +3,13 @@ import React from 'react';
 const InfoBar = ({ room }) => (
   <div className="infoBar">
     <div className="leftContainer">
-      <img className="onlineIcon" alt="online icon" />
+      <i className="onlineIcon"></i>
       <h3>{room}</h3>
     </div>
-    <div className="rightrContainer">
-      <a href="/"><img alt="close icon" /></a>
+    <div className="rightContainer">
+      <a href="/">
+        <i className="fa fa-times fa_custom fa-2x"></i>
+      </a>
     </div>
   </div>
 );
