@@ -7,7 +7,7 @@ export default function SignIn() {
 
   return (
     <div className="joinContainer">
-      <h1 className="heading">Join</h1>
+      <h1>Join</h1>
       <div>
         <input
           placeholder="Name"
@@ -18,7 +18,7 @@ export default function SignIn() {
       <div>
         <input
           placeholder="Room"
-          className="joinInput mt-20"
+          className="joinInput"
           type="text"
           onChange={(event) => setRoom(event.target.value)} />
       </div>

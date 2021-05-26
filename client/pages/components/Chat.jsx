@@ -33,7 +33,6 @@ const Chat = ({ location }) => {
   useEffect(() => {
     socket.on('message', message => {
       setMessages(messages => [...messages, message]);
-      //message panel
     });
     socket.on("roomData", ({ users }) => {
       setUsers(users);
@@ -51,7 +50,7 @@ const Chat = ({ location }) => {
   return (
       <div className="container">
         <InfoBar room={room}/>
-        <Messages messages={message} name={name} />
+        <Messages messages={messages} name={name} />
         <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
       </div>
   );
