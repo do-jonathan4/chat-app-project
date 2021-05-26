@@ -4,7 +4,7 @@ import Message from './Message';
 
 const Messages = ({ messages, name }) => (
   <div className="messages">
-    {messages.map((message, i) => <div key={i}><Message message={message} /></div>)}
+    {messages.map((message, index) => <div key={index}><Message message={message} name={name} /></div>)}
   </div>
 );
 

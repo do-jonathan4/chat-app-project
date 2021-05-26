@@ -78,7 +78,7 @@ body {
   border: none;
   border-radius: 0;
   padding: 5%;
-  width: 80%;
+  width: 70%;
   font-size: 1.2em;
 }
 
@@ -89,11 +89,5 @@ body {
   padding: 20px;
   display: inline-block;
   border: none;
-  width: 20%;
-}
-
-.messages {
-  padding: 5% 0;
-  overflow: auto;
-  flex: auto;
+  width: 30%;
 }
