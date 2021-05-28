@@ -91,3 +91,71 @@ body {
   border: none;
   width: 30%;
 }
+
+.messageBox {
+  background: #F3F3F3;
+  border-radius: 20px;
+  padding: 5px 20px;
+  color: white;
+  display: inline-block;
+  max-width: 80%;
+}
+
+.messageText {
+  width: 100%;
+  letter-spacing: 0;
+  float: left;
+  font-size: 1.1em;
+  word-wrap: break-word;
+}
+
+.messageContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 5%;
+  margin-top: 3px;
+}
+
+.sentText {
+  display: flex;
+  align-items: center;
+  color: #828282;
+  letter-spacing: 0.3px;
+}
+
+.pad-left {
+  padding-left: 10px;
+}
+
+.pad-right {
+  padding-right: 10px;
+}
+
+.justifyStart {
+  justify-content: flex-start;
+}
+
+.justifyEnd {
+  justify-content: flex-end;
+}
+
+.white {
+  color: white;
+}
+
+.dark {
+  color: #0d0d0d;
+}
+
+.bg-blue {
+  background: #2979ff;
+}
+
+.bg-white {
+  background: #F0F8FF;
+}
+.messages {
+  padding: 5% 0;
+  overflow: auto;
+  flex: auto;
+}

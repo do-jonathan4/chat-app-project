@@ -27,6 +27,10 @@ io.on('connection', socket => {
       user: 'Admin',
       text: `${user.name} has joined!`
     });
+    io.to(user.room).emit('roomData', {
+      room: user.room,
+      users: getUsersInRoom(user.room)
+    });
   });
 
   socket.on('sendMessage', message => {
