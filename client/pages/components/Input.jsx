@@ -8,9 +8,19 @@ const Input = ({ setMessage, sendMessage, message }) => (
       placeholder="Type a message..."
       value={message}
       onChange={({ target: { value } }) => setMessage(value)}
-      onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
+      onKeyPress={event => {
+        if (event.key === 'Enter') {
+          sendMessage(event)
+          setMessage('')
+        }}}
     />
-    <button className="sendButton" onClick={event => sendMessage(event)}>Send</button>
+    <button
+      className="sendButton"
+      onClick={event => {
+        sendMessage(event)
+        setMessage('')
+      }}
+    >Send</button>
   </form>
 )
 
