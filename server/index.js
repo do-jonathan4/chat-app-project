@@ -3,15 +3,18 @@ const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const app = express();
 const http = require('http').Server(app);
-const io = require('socket.io')(http, {
-  cors: { origin: `http://localhost:${process.env.DEV_SERVER_PORT}` }
-});
+const io = require('socket.io')(http);
 const cors = require('cors');
 const router = require('./routes');
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
 
 app.use(cors());
 app.use(staticMiddleware);
+app.use((req, res) => {
+  res.sendFile('/index.html', {
+    root: path.join(__dirname, 'public')
+  });
+});
 app.use(router);
 
 io.on('connection', socket => {
