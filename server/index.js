@@ -10,11 +10,6 @@ const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
 
 app.use(cors());
 app.use(staticMiddleware);
-app.use((req, res) => {
-  res.sendFile('/index.html', {
-    root: path.join(__dirname, 'public')
-  });
-});
 app.use(router);
 
 io.on('connection', socket => {
