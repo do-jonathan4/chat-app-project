@@ -7,7 +7,7 @@ import Input from './Input';
 import Messages from './Messages';
 
 
-const ENDPOINT = 'https://group-chat-app1.herokuapp.com';
+const ENDPOINT = 'https://group-chat-app1.herokuapp.com/';
 
 let socket;
 
