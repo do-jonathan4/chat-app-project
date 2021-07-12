@@ -20,26 +20,30 @@ io.on('connection', socket => {
     .then(user => {
       socket.join(user.room);
 
+      dB.getMessages(user.room)
+      .then(messages => messages.forEach(msg => socket.emit('message', msg)))
+      return user
+    })
+    .then(user => {
       socket.emit('message', {
         user: 'Admin',
         text: `${user.name}, welcome to room ${user.room}.`
       });
-      socket.broadcast.to(user.room).emit('message', {
-        user: 'Admin',
-        text: `${user.name} has joined!`
-      });
+
+      dB.createMessage(user.room, 'Admin', `${user.name} has joined!`)
+      .then(msg => socket.broadcast.to(user.room).emit('message', msg))
       return user
     })
     .then(user => {
       dB.getUsersInRoom(user.room)
-        .then(users => {
-
-          io.to(user.room).emit('roomData', {
-            room: user.room,
-            users: users
-          })
+      .then(users => {
+        io.to(user.room).emit('roomData', {
+          room: user.room,
+          users: users
         })
+      })
     })
+
   })
 
   socket.on('sendMessage', message => {
@@ -54,10 +58,12 @@ io.on('connection', socket => {
   socket.on('disconnect', () => {
     dB.removeUser(socket.id)
       .then(user => {
-        io.to(user.room).emit('message', {
-          user: 'Admin',
-          text: `${user.name} has left.`
-        })
+        // io.to(user.room).emit('message', {
+        //   user: 'Admin',
+        //   text: `${user.name} has left.`
+        // })
+        dB.createMessage(user.room, 'Admin', `${user.name} has left!`)
+        .then(msg => io.to(user.room).emit('message', msg))
         return user
       })
       .then(user => {

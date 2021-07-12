@@ -60,17 +60,34 @@ const getUsersInRoom = (room) => {
   })
 }
 
-const createMessage = (room, user, text) => {
+const createMessage = (room, user, message) => {
   return new Promise(resolve => {
-  //   const sql = `
-  //     INSERT INTO "messages" (user, room, text)
-	//     VALUES ($1, $2, $3)
-	// 	  RETURNING *
-	//   `;
-  //   db.query(sql, [user, room, text])
-  //     .then(res => resolve(res.rows))
-  //     .catch(err => console.log(err))
-    resolve({user, text})
+    const sql = `
+      INSERT INTO "messages" (username, room, text)
+	    VALUES ($1, $2, $3)
+		  RETURNING username as user, text
+	  `;
+    db.query(sql, [user, room, message])
+      .then(res => resolve(res.rows[0]))
+      .catch(err => console.log(err))
+  })
+}
+
+const getMessages = (room) => {
+  return new Promise(resolve => {
+    const sql = `
+      SELECT username as user, text FROM (
+        SELECT * from "messages"
+        WHERE room=$1
+        ORDER BY "createdAt" DESC
+        LIMIT 10
+        ) sub
+      ORDER BY "createdAt"
+
+    `;
+    db.query(sql, [room])
+      .then(res => resolve(res.rows))
+      .catch(err => console.log(err))
   })
 }
 
@@ -79,5 +96,6 @@ module.exports = {
   removeUser,
   getUser,
   getUsersInRoom,
-  createMessage
+  createMessage,
+  getMessages
 };
