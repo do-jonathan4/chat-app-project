@@ -8,7 +8,7 @@ const InfoBar = ({ room, users }) => (
     </div>
     <div className="rightContainer">
       <a href="/">
-        <i className="fa fa-home fa_custom fa-2x"></i>
+        <i className="fa fa-sign-out fa_custom fa-2x"></i>
       </a>
     </div>
   </div>
