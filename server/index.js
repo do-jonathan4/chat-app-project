@@ -12,7 +12,7 @@ const dB = require('./queries');
 
 app.use(cors());
 app.use(staticMiddleware);
-// app.use(router);
+app.use(router);
 
 io.on('connection', socket => {
   socket.on('join', ({name, room}) => {
