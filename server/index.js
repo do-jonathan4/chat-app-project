@@ -12,7 +12,7 @@ const dB = require('./queries');
 
 app.use(cors());
 app.use(staticMiddleware);
-app.use(router);
+// app.use(router);
 
 io.on('connection', socket => {
   socket.on('join', ({name, room}) => {
@@ -58,10 +58,6 @@ io.on('connection', socket => {
   socket.on('disconnect', () => {
     dB.removeUser(socket.id)
       .then(user => {
-        // io.to(user.room).emit('message', {
-        //   user: 'Admin',
-        //   text: `${user.name} has left.`
-        // })
         dB.createMessage(user.room, 'Admin', `${user.name} has left!`)
         .then(msg => io.to(user.room).emit('message', msg))
         return user
