@@ -7,7 +7,7 @@ import Input from './Input';
 import Messages from './Messages';
 
 
-const ENDPOINT = 'https://group-chat-app1.herokuapp.com/';
+const ENDPOINT = 'http://localhost:3001/';
 
 let socket;
 
@@ -34,9 +34,12 @@ const Chat = ({ location }) => {
     socket.on('message', message => {
       setMessages(messages => [...messages, message]);
     });
-    socket.on("roomData", ({ users }) => {
+    socket.on('roomData', ({ users }) => {
       setUsers(users);
-     });
+    });
+    socket.on('userExists', alertMsg => {
+      alert(alertMsg);
+    });
   }, []);
 
   const sendMessage = (event) => {

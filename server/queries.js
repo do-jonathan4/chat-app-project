@@ -11,15 +11,22 @@ const addUser = ({ id, name, room }) => {
   room = room.trim().toLowerCase();
   if (!name || !room) return
 
-  return new Promise(resolve => {
-    const sql = `
-      INSERT INTO "users" (id, name, room)
-      VALUES ($1, $2, $3)
-      RETURNING *
-	  `;
-    db.query(sql, [id, name, room])
-      .then(res => resolve(res.rows[0]))
-      .catch(err => console.log(err))
+  return new Promise((resolve, reject) => {
+    getUsersInRoom(room)
+      .then(users => {
+        const [existingUser] = users.filter(x => x.name === name)
+        if (!existingUser) {
+          const sql = `
+            INSERT INTO "users" (id, name, room)
+            VALUES ($1, $2, $3)
+            RETURNING *
+          `;
+          db.query(sql, [id, name, room])
+            .then(res => resolve(res.rows[0]))
+        } else {
+          reject(`"${name}" already exists for "${room}". Please log out and choose a different name to use Chat App.`)
+        }
+      })
   })
 }
 
