@@ -9,7 +9,7 @@ const io = require('socket.io')(http, {
 const cors = require('cors');
 const router = require('./routes');
 const dB = require('./queries');
-const { path } = require('dotenv/lib/env-options');
+const path = require('path');
 
 app.use(cors());
 app.use(staticMiddleware);
