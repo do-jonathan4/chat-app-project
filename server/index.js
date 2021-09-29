@@ -5,6 +5,7 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http, {
   cors: { origin: `https://group-chat-app1.herokuapp.com/` }
+  // cors: { origin: `http://localhost:${process.env.DEV_SERVER_PORT}` }
 });
 const cors = require('cors');
 const router = require('./routes');

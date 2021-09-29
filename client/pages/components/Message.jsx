@@ -9,6 +9,14 @@ const Message = ({ message: { text, user }, name } ) => {
     isSentByCurrentUser = true;
   }
 
+  if (user === 'Admin') {
+    return (
+      <div className="messageContainer justifyStart">
+        <p className="sentText pad-left">{text}</p>
+      </div>
+    )
+  }
+
   return (
     isSentByCurrentUser
       ? (

@@ -8,6 +8,7 @@ import Messages from './Messages';
 
 
 const ENDPOINT = 'https://group-chat-app1.herokuapp.com/';
+// const ENDPOINT = 'http://localhost:3001/';
 
 let socket;
 
