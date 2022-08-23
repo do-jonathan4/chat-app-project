@@ -38,8 +38,9 @@ const Chat = ({ location }) => {
     socket.on('roomData', ({ users }) => {
       setUsers(users);
     });
+    //flex feature
     socket.on('userExists', alertMsg => {
-      alert(alertMsg);
+      if(!alert(alertMsg)) window.location.replace('/')
     });
   }, []);
 

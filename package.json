@@ -65,5 +65,16 @@
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.1",
     "webpack-dev-server": "^3.11.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/do-jonathan4/chat-app-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/do-jonathan4/chat-app-project/issues"
+  },
+  "homepage": "https://github.com/do-jonathan4/chat-app-project#readme"
 }
