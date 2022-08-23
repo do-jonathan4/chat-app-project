@@ -24,7 +24,7 @@ const addUser = ({ id, name, room }) => {
           db.query(sql, [id, name, room])
             .then(res => resolve(res.rows[0]))
         } else {
-          reject(`"${name}" already exists for "${room}". Please log out and choose a different name to use Chat App.`)
+          reject(`"${name}" already exists for "${room}". Please go back and try again.`)
         }
       })
   })
