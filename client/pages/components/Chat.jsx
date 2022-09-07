@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
-import io from "socket.io-client";
+import io from 'socket.io-client';
 
 import InfoBar from './InfoBar';
 import Input from './Input';
 import Messages from './Messages';
-
 
 const ENDPOINT = 'https://group-chat-app1.herokuapp.com/';
 // const ENDPOINT = 'http://localhost:3001/';
@@ -24,9 +23,9 @@ const Chat = ({ location }) => {
     socket = io(ENDPOINT);
 
     setRoom(room);
-    setName(name)
+    setName(name);
 
-    socket.emit('join', { name, room }, (error) => {
+    socket.emit('join', { name, room }, error => {
       if (error) alert(error);
     });
   }, [ENDPOINT, location.search]);
@@ -38,18 +37,18 @@ const Chat = ({ location }) => {
     socket.on('roomData', ({ users }) => {
       setUsers(users);
     });
-    //flex feature
+    // flex feature
     socket.on('userExists', alertMsg => {
-      if(!alert(alertMsg)) window.location.replace('/')
+      if (!alert(alertMsg)) window.location.href = '/';
     });
   }, []);
 
-  const sendMessage = (event) => {
+  const sendMessage = event => {
     event.preventDefault();
     if (message) {
       socket.emit('sendMessage', message, () => setMessage(''));
     }
-  }
+  };
 
   return (
     <div className="chatOuterContainer">
@@ -60,6 +59,6 @@ const Chat = ({ location }) => {
       </div>
     </div>
   );
-}
+};
 
 export default Chat;
